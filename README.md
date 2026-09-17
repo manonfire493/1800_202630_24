@@ -67,7 +67,10 @@ elmo-hikes/
 
 ## Contributors
 - **Damir B.** - BCIT CST Student with a passion for things like games, art, and having fun!
-- **Aiden McGrath** - BCIT CST Student. Fun fact: Loves cats.
+- **Aiden McGrath** - BCIT CST Student. Fun fact: Loves cats. Also plays badminton.
+- **Rayyan** - BCIT CST Student with a knack for both camping and playing games inside. Fun fact: likes to compose music, sometimes.
+
+
 ---
 
 
