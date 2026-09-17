@@ -66,6 +66,7 @@ elmo-hikes/
 
 
 ## Contributors
+- Rayyan - BCIT CST Student with a passion for outdoor adventures and user-friendly applications. Fun fact: likes to compose music, sometimes.
 - **Aiden McGrath** - BCIT CST Student. Fun fact: Loves cats.
 - **Teammate Name** - BCIT CST Student, Frontend enthusiast with a knack for creative design. Fun fact: Has a collection of over 50 houseplants.
 
