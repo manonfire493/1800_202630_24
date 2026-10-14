@@ -17,22 +17,57 @@
 
     <!------------------------------>
     <!-- Your HTML Layout go here -->
+    <nav class="navbar bg-body-tertiary fixed-top">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">App name</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar"
+                aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar"
+                aria-labelledby="offcanvasNavbarLabel">
+                <div class="offcanvas-header">
+                    <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Menu</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                </div>
+                <div class="offcanvas-body">
+                    <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+                        <li class="nav-item">
+                            <a class="nav-link" href="#"> <img src="./images/settings.png" alt="Bootstrap" width="30" height="30"> Settings</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#"> <img src="./images/help.png" alt="Bootstrap" width="30" height="30"> How to play</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#"> <img src="./images/stats.png" alt="Bootstrap" width="30" height="30"> Stats</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#"> <img src="./images/theme.png" alt="Bootstrap" width="30" height="30"> Theme</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#"> <img src="./images/about-us.png" alt="Bootstrap" width="30" height="30"> About Us</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
     <!------------------------------>
     <!-- Stuff for body goes here -->
     <div class="px-4 pt-5 my-5 text-center border-bottom">
         <h1 class="display-4 fw-bold">Welcome User!</h1>
         <div class="col-lg-6 mx-auto">
-            <p class="mb-4" style="font-size: x-large;">With the current state of the world it's hard to tell what is real and what isn't these days. So let's train your brain to be able to see the difference of AI generated content and real work in a fun, but effective game of <b>A</b>m <b>I</b> sure?</p>
+            <p class="mb-4" style="font-size: x-large;">With the current state of the world it's hard to tell what is
+                real and what isn't these days. So let's train your brain to be able to see the difference of AI
+                generated content and real work in a fun, but effective game of <b>A</b>m <b>I</b> sure?</p>
             <div class="d-grid gap-2 d-sm-flex justify-content-sm-center mb-5">
                 <button type="button" class="btn btn-primary btn-lg px-4 me-sm-3 w-50"><b>Play</b></button>
             </div>
         </div>
         <div class="overflow-hidden">
             <div>
-                <img src="./images/Tung_Tung_Tung_Sahur.png" alt="Ai image"
-                    width="700" height="700">
-                <img src="./images/grumpy-cat.jpg" alt="Real photo of grumpy cat"
-                    width="700" height="700">
+                <img src="./images/Tung_Tung_Tung_Sahur.png" alt="Ai image" width="700" height="700">
+                <img src="./images/grumpy-cat.jpg" alt="Real photo of grumpy cat" width="700" height="700">
             </div>
         </div>
     </div>
