@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>My BCIT Project</title>
+    <meta name="comp1800 template" content="My 1800 App">
+
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Web Components for shared navbar and footer layout -->
+    <!-- <script type="module" src="/src/components/site-navbar.js"></script> -->
+    <!-- <script type="module" src="/src/components/site-footer.js"></script> -->
+</head>
+
+<body>
+    <!------------------------------>
+    <!-- Your HTML Layout go here -->
+    <!------------------------------>
+
+    <!-- our own navbar goes here -->
+    <nav class="navbar bg-body-tertiary fixed-top">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="index.html">App name</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar"
+                aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar"
+                aria-labelledby="offcanvasNavbarLabel">
+                <div class="offcanvas-header">
+                    <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Menu</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                </div>
+                <div class="offcanvas-body">
+                    <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+                        <li class="nav-item">
+                            <a class="nav-link" href="#"> <img src="./images/settings.png" alt="Bootstrap" width="30"
+                                    height="30"> Settings</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#"> <img src="./images/help.png" alt="Bootstrap" width="30"
+                                    height="30"> How to play</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="stats.html"> <img src="./images/stats.png" alt="Bootstrap"
+                                    width="30" height="30"> Stats</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#"> <img src="./images/theme.png" alt="Bootstrap" width="30"
+                                    height="30"> Theme</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#"> <img src="./images/about-us.png" alt="Bootstrap" width="30"
+                                    height="30"> About Us</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main content goes here -->
+    <div class="pt-5 my-5 text-center border-bottom">
+        <div class="pb-5 border-bottom">
+            <h1>GAMES <img src="/images/help.png" alt="Placeholder" width="40" height="40"></h1>
+            
+            <div class="row">
+                <div class="col-sm-6" style="width: 18rem;">
+                    <div class="card">
+                        <img src="/images/game-images.png" class="card-img-top" alt="image game">
+                        <div class="card-body">
+                            <h5 class="card-title">Photo Frenzy</h5>
+                            <p class="card-text">A gust of wind made a stack of photos fly in the sky! Catch the Normal photos and avoid fakes until none are left!</p>
+                            <a href="/games/game-image.html" class="btn btn-primary">Play!</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-sm-6" style="width: 18rem;">
+                    <div class="card">
+                        <img src="/images/game-line-up.png" class="card-img-top" alt="image game">
+                        <div class="card-body">
+                            <h5 class="card-title">Among the Chatter</h5>
+                            <p class="card-text">You are apart of a group of chat which has many users ythat talk about something that they are interested in, but one of them is not who they say they are. Investigate and kick out the bot of the group before they record everything of the group chat!</p>
+                            <a href="/games/game-voice.html" class="btn btn-primary">Play!</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-sm-6" style="width: 18rem;">
+                    <div class="card">
+                        <img src="/images/game-document.png" class="card-img-top" alt="image game">
+                        <div class="card-body">
+                            <h5 class="card-title">Scary Search</h5>
+                            <p class="card-text">You are stuck in an abonden warehouse. There is an article thats been given to you with one section of it made using ai which talks about a different topic entirely. Click the text to escape before something gets to you within the shadows.</p>
+                            <a href="/games/game-text.html" class="btn btn-primary">Play!</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="pb-5">
+            <h1>QUIZZES <img src="/images/help.png" alt="Placeholder" width="40" height="40"></h1>
+
+            <div class="row">
+                <div class="col-sm-6" style="width: 18rem;">
+                    <div class="card">
+                        <img src="/images/game-images.png" class="card-img-top" alt="image game">
+                        <div class="card-body">
+                            <h5 class="card-title">Image Quiz</h5>
+                            <p class="card-text">A Quiz all about generated and regular images</p>
+                            <a href="/quizzes/quiz-image.html" class="btn btn-primary">Let's gp!</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-sm-6" style="width: 18rem;">
+                    <div class="card">
+                        <img src="/images/game-audio.png" class="card-img-top" alt="image game">
+                        <div class="card-body">
+                            <h5 class="card-title">Audio Quiz</h5>
+                            <p class="card-text">A Quiz all about generated and regular audio</p>
+                            <a href="/quizzes/quiz-voice.html" class="btn btn-primary">Let's gp!</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-sm-6" style="width: 18rem;">
+                    <div class="card">
+                        <img src="/images/game-document.png" class="card-img-top" alt="image game">
+                        <div class="card-body">
+                            <h5 class="card-title">Text Quiz</h5>
+                            <p class="card-text">A Quiz all about generated and regular text</p>
+                            <a href="/quizzes/quiz-text.html" class="btn btn-primary">Let's gp!</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <!-- our own footer goes here -->
+    <!-- <site-footer></site-footer> -->
+
+    <!---------------------------------------------->
+    <!-- Your own JavaScript scripts go here      -->
+    <!---------------------------------------------->
+
+    <script type="module" src="/src/app.js"></script>
+
+</body>
+
+</html>
