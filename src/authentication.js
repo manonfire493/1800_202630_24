@@ -69,7 +69,15 @@ export async function signupUser(name, email, password) {
       name: name,
       email: email,
       country: "Canada", // Default value
-      school: "BCIT"     // Default value
+      school: "BCIT",     // Default value
+      created_at: Date.now().toString(),
+      games_started: 0,
+      games_completed: 0,
+      games_average_score: 0,
+      quizzes_started: 0,
+      quizzes_completed: 0,
+      quizzes_average_score: 0,
+      
     });
     console.log("Firestore user document created successfully!");
 } catch (error) {
