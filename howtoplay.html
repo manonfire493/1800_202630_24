@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>How to Play - Am I sure?</title>
+    <meta name="comp1800 template" content="My 1800 App">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+
+    <!-- Offcanvas Navigation Menu -->
+    <nav class="navbar bg-body-tertiary fixed-top">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="index.html">Am I sure?</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar"
+                aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar"
+                aria-labelledby="offcanvasNavbarLabel">
+                <div class="offcanvas-header">
+                    <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Menu</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                </div>
+                <div class="offcanvas-body">
+                    <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+                        <li class="nav-item">
+                            <a class="nav-link" href="index.html">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Settings</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" href="howtoplay.html">How to play</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Stats</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Theme</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="aboutus.html">About Us</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Content -->
+    <div class="px-4 py-5 my-5 text-center">
+        <h1 class="display-5 fw-bold text-primary mb-3">How To Play</h1>
+        <div class="col-lg-6 mx-auto">
+            <p class="lead mb-4">
+                Can you tell the difference between real content and AI-generated work? Put your instincts to the test!
+            </p>
+            
+            <div class="text-start border rounded p-4 bg-light shadow-sm mb-4">
+                <h4 class="fw-bold mb-3">Game Rules:</h4>
+                <ol class="mb-0">
+                    <li class="mb-2"><b>Look closely:</b> Check the details of the image or text presented on your screen.</li>
+                    <li class="mb-2"><b>Make your guess:</b> Decide whether it's real or created by AI.</li>
+                    <li class="mb-2"><b>Build your streak:</b> Earn points for correct guesses and track your score as you play!</li>
+                </ol>
+            </div>
+
+            <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+                <a href="index.html" class="btn btn-primary btn-lg px-4 gap-3">Back to Home</a>
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="./src/main.js"></script>
+</body>
+
+</html>
