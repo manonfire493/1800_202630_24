@@ -1,14 +1,10 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap";
 import { renderAuthControls } from "./callToAction.js";
+import { seedQuestions } from "./addQuestions.js";
 
 // If you have custom global styles, import them as well:
 // import '../styles/style.css';
-
-function sayHello() {
-  console.log("Hello! (main.js loaded)");
-}
-document.addEventListener("DOMContentLoaded", sayHello);
 
 import { db } from "./firebaseConfig.js";
 import { doc, onSnapshot, getDoc } from "firebase/firestore";
@@ -23,6 +19,11 @@ import {
 // The function we want to use is called "onAuthReady" which returns the login state
 import { onAuthReady } from "/src/authentication.js";
 
+function sayHello() {
+  console.log("Hello! (main.js loaded)");
+}
+document.addEventListener("DOMContentLoaded", sayHello);
+
 // Function to fetch the signed-in user's name and display it in the UI
 function showName() {
   // Get the DOM element where the user's name will be displayed
@@ -33,8 +34,8 @@ function showName() {
   onAuthReady(async (user) => {
     // If no user is logged in, redirect to the login page
     if (!user) {
-    //   location.href = "login.html";     //Do we have to redirect them away if they are logged out?
-        console.log("No user logged in.");
+      //   location.href = "login.html";     //Do we have to redirect them away if they are logged out?
+      console.log("No user logged in.");
 
       return; // Stop execution
     }
@@ -54,6 +55,10 @@ function showName() {
     }
   });
 }
-
 showName();
+
+seedQuestions();
+
 renderAuthControls();
+
+console.log("Main.js finished executing!");
