@@ -9,8 +9,12 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
+    <!-- Web Components for shared navbar and footer layout -->
+    <script type="module" src="/src/components/site-navbar.js"></script>
+    <script type="module" src="/src/components/site-footer.js"></script>
+
     <!-- Other libraries go here -->
-     <link rel="stylesheet" href="./styles/style.css">
+     <link rel="stylesheet" href="/src/styles/style.css">
     
 </head>
 
@@ -18,41 +22,7 @@
 
     <!------------------------------>
     <!-- Your HTML Layout go here -->
-    <nav class="navbar bg-body-tertiary fixed-top">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="index.html">App name</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar"
-                aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar"
-                aria-labelledby="offcanvasNavbarLabel">
-                <div class="offcanvas-header">
-                    <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Menu</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-                </div>
-                <div class="offcanvas-body">
-                    <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
-                        <li class="nav-item">
-                            <a class="nav-link" href="#"> <img src="./images/settings.png" alt="Bootstrap" width="30" height="30"> Settings</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#"> <img src="./images/help.png" alt="Bootstrap" width="30" height="30"> How to play</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="stats.html"> <img src="./images/stats.png" alt="Bootstrap" width="30" height="30"> Stats</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#"> <img src="./images/theme.png" alt="Bootstrap" width="30" height="30"> Theme</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#"> <img src="./images/about-us.png" alt="Bootstrap" width="30" height="30"> About Us</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </nav>
+    <site-navbar></site-navbar>
     <!------------------------------>
     <!-- Stuff for body goes here -->
 
@@ -76,7 +46,7 @@
     </div>
 
     <!-- Sign in thing -->
-    <section class="newsletter-cta py-5 bg-light">
+    <section class="newsletter-cta py-5 bg-light" id="CTA-section">
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-lg-8 text-center">
@@ -93,6 +63,9 @@
             </div>
         </div>
     </section>
+
+    <!-- Site footer -->
+     <site-footer></site-footer>
 
 
     <!---------------------------------------------->

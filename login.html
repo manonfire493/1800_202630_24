@@ -9,9 +9,13 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!-- Web Components for shared navbar and footer layout || IMPLEMENT THIS -->
-    <!-- <script type="module" src="/src/components/site-navbar.js"></script> -->
-    <!-- <script type="module" src="/src/components/site-footer.js"></script> -->
+    <!-- Web Components for shared navbar and footer layout -->
+    <script type="module" src="/src/components/site-navbar.js"></script>
+    <script type="module" src="/src/components/site-footer.js"></script>
+
+    <!-- Stylesheet -->
+     <link rel="stylesheet" href="/src/styles/style.css">
+
 </head>
 
 <body>
@@ -19,33 +23,7 @@
     <!-- Your HTML Layout go here -->
     <!------------------------------>
 
-    <site-navbar>
-        <nav class="navbar navbar-expand-lg bg-body-tertiary">
-  <div class="container-fluid">
-     <a class="navbar-brand" href="index.html">
-      <img src="/images/evilrobot.png" alt="It's just a placeholder" width="30" height="24" class="d-inline-block align-text-top">
-      Am I Sure?
-    </a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="index.html">Home</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Link</a>
-        </li>
-      </ul>
-      <form class="d-flex" role="search">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
-        <button class="btn btn-outline-success" type="submit">Search</button>
-      </form>
-    </div>
-  </div>
-</nav>
-    </site-navbar>
+    <site-navbar></site-navbar>
     
  <div class="container py-5" style="max-width: 420px;">
         <!-- Alerts -->
@@ -91,6 +69,9 @@
             </small>
         </div>
     </div>
+
+    <!-- Site footer -->
+    <site-footer></site-footer>
     
     <!---------------------------------------------->
     <!-- Your own JavaScript scripts go here      -->
