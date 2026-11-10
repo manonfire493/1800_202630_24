@@ -3,5 +3,37 @@
   /* This is the placeholder global stylesheet with example variable from root -Rayyan */
 }
 
+/* "Intro" text that appears at the top of any quiz */
+.question-intro {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size:larger;
+
+  margin-bottom: -2%;
+}
+
+.question-text {
+  font-family: Arial, Helvetica, sans-serif;
+  padding: 1%;
+  background-color: rgba(128, 128, 128, 0.156);
+
+}
+
+.question-container {
+  margin-top:1%;
+  margin-bottom:3%;
+}
+
+/* Todo: custom CSS for question answer buttons (currently using bootstrap)
+.question-answer-false {
+  margin: 1%;
+  background-color: red;
+}
+
+.question-answer-true {
+  margin: 1%;
+  background-color: greenyellow;
+}
+*/
+
 /*any one have any idea how we include this is html files?*/
 /* Use <link rel="stylesheet" href="/src/styles/style.css"> in the <head> of the html file */
