@@ -51,3 +51,7 @@ export const auth = getAuth(app);
 // application data in Firestore.
 // ---------------------------------------------------------
 export const db = getFirestore(app);
+
+
+
+console.log(Math.random())
