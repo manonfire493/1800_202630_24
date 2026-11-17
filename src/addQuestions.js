@@ -129,7 +129,7 @@ async function updateAnswer(sessionID, questionID, answer) {
 
     // updates the answer for the specific question, presumably linked to an event listener
     // square brackets to get the specific question as an object and not just a string,
-    // and access that key to update its value with `answer`
+    // and access that key to update its value with `answer` as a boolean from param
     await updateDoc(sessionRef, {
         [`question_answers.${questionID}`]: answer
     });

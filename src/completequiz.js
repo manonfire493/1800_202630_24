@@ -25,3 +25,7 @@ function finish_quiz() {
 }
 
 finish_quiz()
+
+async function markUserAnswers() {
+    
+}
