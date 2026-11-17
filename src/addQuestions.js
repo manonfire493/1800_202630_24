@@ -149,6 +149,17 @@ async function setupAnswerButton(newQuestion, questionID, sessionID) {
 
         await updateAnswer(sessionID, questionID, false);
 
+        if(humanWrittenButton.classList.contains("btn-secondary")){
+          humanWrittenButton.classList.replace("btn-secondary", "btn-success")
+        }
+        else {
+          humanWrittenButton.classList.replace("btn-success", "btn-secondary")
+        }
+
+        if (AIWrittenButton.classList.contains("btn-secondary")){
+          AIWrittenButton.classList.replace("btn-secondary", "btn-warning")
+        }
+
         console.log("User selected 'Human written'");
 
     });
@@ -156,6 +167,17 @@ async function setupAnswerButton(newQuestion, questionID, sessionID) {
     AIWrittenButton.addEventListener("click", async () => {
 
         await updateAnswer(sessionID, questionID, true);
+
+        if(AIWrittenButton.classList.contains("btn-secondary")){
+          AIWrittenButton.classList.replace("btn-secondary", "btn-warning")
+        }
+        else { 
+          AIWrittenButton.classList.replace("btn-warning", "btn-secondary")
+        }
+
+        if (humanWrittenButton.classList.contains("btn-secondary")){
+          humanWrittenButton.classList.replace("btn-secondary", "btn-success")
+        }
 
         console.log("User selected 'This is AI!'");
 
