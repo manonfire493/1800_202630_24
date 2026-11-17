@@ -68,6 +68,7 @@ export async function signupUser(name, email, password) {
     await setDoc(doc(db, "users", user.uid), {
       name: name,
       email: email,
+      userID: user.uid,
       country: "Canada", // Default value
       school: "BCIT",     // Default value
       created_at: Date.now().toString(),

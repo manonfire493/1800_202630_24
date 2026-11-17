@@ -7,6 +7,8 @@ import {
   serverTimestamp,
 } from "firebase/firestore";
 
+import { createSession } from "./userSessions.js";
+
 /* Difficulty levels for questions: Easy, Medium, Hard, Insane 
 FIELDS 
 
@@ -119,35 +121,50 @@ export async function seedQuestions() {
   }
 }
 
-async function setupAnswerButton(question, qname) {
-  // Read questions collection
+async function updateAnswer(sessionID, questionID, answer) {
+  // "inspiration" taken from demos as usual (aka i just copied and restructured where necessary)
 
-  // [FRONT END] Find the answer buttons (there are 2)
-  const buttons = document.querySelectorAll(".btn-ans");
-  // const answered = question.querySelector('.answer');
+    // Find the session document
+    const sessionRef = doc(db, "sessions", sessionID);
 
-  // [FRONT END] Already selected? Do the thing
-  //             (favourites was read from Firestore in Step 2.3)
-  // if (answered !== null) {
-  //     button.classList.replace("btn-success", "btn-info");
-  // }
-
-  // Connect it: "for each answer button, when you are clicked, do the thing"
-  buttons.forEach((button) => {
-    button.addEventListener("click", function () {
-      if (button.classList.contains("question-answer-true")) {
-        var answer = true;
-      } else {
-        var answer = false;
-      }
-
-      question.querySelector.user_answer = answer;
-      console.log("User decided that " + question.name + " is " + answer);
+    // updates the answer for the specific question, presumably linked to an event listener
+    // square brackets to get the specific question as an object and not just a string,
+    // and access that key to update its value with `answer`
+    await updateDoc(sessionRef, {
+        [`question_answers.${questionID}`]: answer
     });
-  });
+
+    console.log("Answer updated:", answer)
+  }
+
+async function setupAnswerButton(newQuestion, questionID, sessionID) {
+
+   // Find the true/false button inside this specific questionID associated block
+    const humanWrittenButton = newQuestion.querySelector(".question-answer-false");
+    const AIWrittenButton = newQuestion.querySelector(".question-answer-true");
+
+    console.log("Added question with ID:", questionID);
+
+    humanWrittenButton.addEventListener("click", async () => {
+
+        await updateAnswer(sessionID, questionID, false);
+
+        console.log("User selected 'Human written'");
+
+    });
+
+    AIWrittenButton.addEventListener("click", async () => {
+
+        await updateAnswer(sessionID, questionID, true);
+
+        console.log("User selected 'This is AI!'");
+
+    });
+
 }
 
-export async function displayTextQuestions() {
+
+export async function displayTextQuestions(sessionID) {
   // reference to the hikes colleciton
   const questions = collection(db, "questions");
 
@@ -169,7 +186,7 @@ export async function displayTextQuestions() {
     //populate data in the template
     newQuestion.querySelector(".question-number").textContent = questionNumber;
     newQuestion.querySelector(".question-text").textContent = question.question;
-    setupAnswerButton(newQuestion, question.name);
+    setupAnswerButton(newQuestion, doc.id, sessionID);
 
     document.getElementById("questions-go-here").appendChild(newQuestion);
 
@@ -177,4 +194,17 @@ export async function displayTextQuestions() {
   });
 }
 
-displayTextQuestions();
+// new and improved way to display text questions, now accounting for sessionID
+// also added await to everything because it seemed to mess some stuff up without it
+async function initializeQuiz() {
+
+    const sessionID = await createSession();
+
+    // debug log incase the sessionID doesn't come through, check if it makes it through initializeQuiz()
+    //  console.log("sessionID received:", sessionID); 
+
+    await displayTextQuestions(sessionID);
+
+}
+
+initializeQuiz();

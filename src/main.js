@@ -2,6 +2,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap";
 import { renderAuthControls } from "./callToAction.js";
 import { displayTextQuestions, seedQuestions } from "./addQuestions.js";
+import { createSession } from "./userSessions.js";
 
 // If you have custom global styles, import them as well:
 // import '../styles/style.css';
@@ -60,5 +61,7 @@ showName();
 seedQuestions();
 
 renderAuthControls();
+
+createSession();
 
 console.log("Main.js finished executing!");
