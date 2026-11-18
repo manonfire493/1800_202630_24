@@ -71,7 +71,7 @@ export async function signupUser(name, email, password) {
       userID: user.uid,
       country: "Canada", // Default value
       school: "BCIT",     // Default value
-      created_at: Date.now().toString(),
+      created_at: Date.now(),
       games_started: 0,
       games_completed: 0,
       games_average_score: 0,

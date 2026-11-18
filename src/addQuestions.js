@@ -150,9 +150,12 @@ async function setupAnswerButton(newQuestion, questionID, sessionID) {
         await updateAnswer(sessionID, questionID, false);
 
         if(humanWrittenButton.classList.contains("btn-secondary")){
+
+          // If the question was already selected, make it appear unselected
           humanWrittenButton.classList.replace("btn-secondary", "btn-success")
         }
         else {
+          // If the question was unselected
           humanWrittenButton.classList.replace("btn-success", "btn-secondary")
         }
 

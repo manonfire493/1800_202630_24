@@ -52,8 +52,9 @@ function displayStats() {
             ? userDoc.data().name // 2️⃣ Otherwise fallback to Firebase displayName
             : user.displayName || user.email; // 3️⃣ Otherwise fallback to email
 
+        console.log(userDoc.data().created_at)
         const date_created = userDoc.exists()
-            ? userDoc.data().created_at
+            ? new Date(Number.parseInt(userDoc.data().created_at)).toString()
             : null
 
         container.querySelector('.user-name').textContent = `name: ${name}`;
