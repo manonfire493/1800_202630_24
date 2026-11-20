@@ -21,13 +21,33 @@
 
     <!-- our own navbar goes here -->
     <site-navbar></site-navbar>
-    
-    <!-- Main content goes here -->
-    <p class="mt-3">You done did it</p>
 
+    <!-- Main content goes here -->
+
+    <br><br><br>
+    <div class="card text-center">
+        <div class="card-header" id="completed-header">
+            Quiz Complete! Grade: 
+        </div>
+        <div class="card-body">
+            <h5 class="card-title result" id="score-percentage" styke="font-size:xx-large;">You done did it </h5>
+            <p class="card-text" id="completed-score">
+                You scored
+                <span class="result" id="quiz-score">loading...</span> 
+                out of 
+                <span class="result" id="quiz-max">...</span>
+
+            </p>
+            <a href="index.html" class="btn btn-primary">Return to Home</a>
+        </div>
+        <div class="card-footer text-body-secondary">
+            You may retry the quiz at any time
+        </div>
+    </div>
+    <br><br><br>
     <!-- our own footer goes here -->
     <site-footer></site-footer>
-    
+
     <!---------------------------------------------->
     <!-- Your own JavaScript scripts go here      -->
     <!---------------------------------------------->

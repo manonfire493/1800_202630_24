@@ -3,6 +3,10 @@
   /* This is the placeholder global stylesheet with example variable from root -Rayyan */
 }
 
+* {
+  transition: 0.25s;
+}
+
 /* "Intro" text that appears at the top of any quiz */
 .question-intro {
   font-family: Arial, Helvetica, sans-serif;
@@ -34,6 +38,57 @@
   background-color: greenyellow;
 }
 */
+
+/* Score results, combined with Bootstrap */ 
+
+#completed-header{
+  transition: 0.5s;
+  font-weight:bold;
+  background-color: rgba(157, 156, 156, 0.58);
+
+  &:hover{
+    font-weight: bolder;
+  }
+}
+.result {
+  padding: 1%;
+  font-size: x-large;
+  transition: 0.5s;
+  font-weight: bold;
+
+  &:hover {
+    color:blue;
+    font-size: xx-large;
+    font-weight: bolder;
+  }
+}
+
+.score-S {
+  color:aqua;
+}
+
+.score-A {
+  color:green;
+}
+
+.score-B {
+  color:greenyellow
+}
+
+.score-C {
+  color:yellow;
+}
+
+.score-D {
+  color:brown;
+}
+
+.score-F {
+  color:red;
+}
+
+
+
 
 /*any one have any idea how we include this is html files?*/
 /* Use <link rel="stylesheet" href="/src/styles/style.css"> in the <head> of the html file */
