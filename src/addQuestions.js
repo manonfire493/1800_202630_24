@@ -235,7 +235,7 @@ async function initializeQuiz() {
     const sessionID = await createSession();
 
     // debug log incase the sessionID doesn't come through, check if it makes it through initializeQuiz()
-     console.log("sessionID received:", sessionID); 
+    //  console.log("sessionID received:", sessionID); 
 
     await displayTextQuestions(sessionID);
 

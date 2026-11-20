@@ -12,10 +12,12 @@ import { auth } from "/src/firebaseConfig.js";
 import { onAuthStateChanged } from "firebase/auth";
 import { currentDocument } from "firebase/firestore/pipelines";
 
-export async function userSession(user) {
+export async function userSession(user, id=true) {
 
   // NOTE: Assign this function to a variable using await otherwise it will return a broken promise!
   // ex. const session = >>await<< userSession(user);
+
+  // :param id: return either the session ID (id=true, default when omitted) or the session document object (id=false)
 
 
   // Guards for if the user object passed in as null, and then double check if the user is even logged in at all
@@ -49,8 +51,12 @@ export async function userSession(user) {
         }
       });
       if (sessionExists) {
-        console.log("in userSession(): previousSessionID returned as", previousSessionID)
-        return previousSessionID;}
+        // console.log("in userSession(): previousSessionID returned as", previousSessionID)
+        if (id) {
+        return previousSessionID;
+        }
+        else return previousSession;
+      }
       else {return null;}
 }
 
@@ -64,7 +70,7 @@ export async function createSession() {
     // If there is no session for that user already, then we can make a new one --------->
   if (await userSession(user)){
     const previousSessionID = await userSession(user);
-    console.log("createSession skipped, returned previousSession.id:", previousSessionID);
+    // console.log("createSession skipped, returned previousSession.id:", previousSessionID);
     return previousSessionID;
   }
 
