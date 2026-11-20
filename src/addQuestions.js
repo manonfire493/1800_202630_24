@@ -125,7 +125,7 @@ async function updateAnswer(sessionID, questionID, answer) {
   // "inspiration" taken from demos as usual (aka i just copied and restructured where necessary)
 
     // Find the session document
-    const sessionRef = doc(db, "sessions", sessionID);
+    const sessionRef = await doc(db, "sessions", sessionID);
 
     // updates the answer for the specific question, presumably linked to an event listener
     // square brackets to get the specific question as an object and not just a string,
@@ -147,42 +147,51 @@ async function setupAnswerButton(newQuestion, questionID, sessionID) {
 
     humanWrittenButton.addEventListener("click", async () => {
 
-        await updateAnswer(sessionID, questionID, false);
-
         if(humanWrittenButton.classList.contains("btn-secondary")){
 
           // If the question was already selected, make it appear unselected
+          // And also unselected it in the DB by changing answer to null again
           humanWrittenButton.classList.replace("btn-secondary", "btn-success")
+          await updateAnswer(sessionID, questionID, null);
+          console.log("Unselected 'Human written'");
         }
         else {
           // If the question was unselected
           humanWrittenButton.classList.replace("btn-success", "btn-secondary")
+          await updateAnswer(sessionID, questionID, false);
+           console.log("User selected 'Human written'");
         }
 
         if (AIWrittenButton.classList.contains("btn-secondary")){
+          // Change the other button to unselected
           AIWrittenButton.classList.replace("btn-secondary", "btn-warning")
         }
-
-        console.log("User selected 'Human written'");
+       
 
     });
 
     AIWrittenButton.addEventListener("click", async () => {
 
-        await updateAnswer(sessionID, questionID, true);
-
         if(AIWrittenButton.classList.contains("btn-secondary")){
+          // If the question was already selected, make it appear unselected
+          // And also unselected it in the DB by changing answer to null again
           AIWrittenButton.classList.replace("btn-secondary", "btn-warning")
+          await updateAnswer(sessionID, questionID, null);
+          console.log("Unselected 'This is AI!'");
         }
         else { 
+          // If the question was unselected
           AIWrittenButton.classList.replace("btn-warning", "btn-secondary")
+          await updateAnswer(sessionID, questionID, true);
+          console.log("User selected 'This is AI!'");
         }
 
         if (humanWrittenButton.classList.contains("btn-secondary")){
+          // Change the other button to unselected
           humanWrittenButton.classList.replace("btn-secondary", "btn-success")
         }
 
-        console.log("User selected 'This is AI!'");
+        
 
     });
 
@@ -226,7 +235,7 @@ async function initializeQuiz() {
     const sessionID = await createSession();
 
     // debug log incase the sessionID doesn't come through, check if it makes it through initializeQuiz()
-    //  console.log("sessionID received:", sessionID); 
+     console.log("sessionID received:", sessionID); 
 
     await displayTextQuestions(sessionID);
 
