@@ -102,6 +102,7 @@ export function addQuizQuestions() {
     theme: "Shakespeare",
     user_answer: null,
   });
+  
 }
 
 export async function seedQuestions() {
@@ -199,7 +200,7 @@ async function setupAnswerButton(newQuestion, questionID, sessionID) {
 
 
 export async function displayTextQuestions(sessionID) {
-  // reference to the hikes colleciton
+  // reference to the questions colleciton
   const questions = collection(db, "questions");
 
   // get the template from front-end
