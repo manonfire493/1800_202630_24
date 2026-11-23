@@ -134,7 +134,7 @@ function showScore(score, max){
 
   }
   else if (scorePercentage >= 80){
-  // B+
+  // B+f
   headerDisplay.textContent += "B+"
 
   headerDisplay.classList.add("score-B")
@@ -192,3 +192,95 @@ function showScore(score, max){
 }
 
 markUserAnswers();
+
+async function displayCompletedTextQuestions(){
+
+  console.log("Attempting to display quiz answers...")
+
+  // Get user
+  await auth.authStateReady();
+  const user = auth.currentUser;
+
+  // Get session
+  const session = await userSession(user, false);
+  const userAnswers = session.get("question_answers");
+  
+
+  // Get snapshot of questions collection so we can interact with it
+  const questionsSnap = await getDocs(collection(db, "questions"));
+
+  // Select the front-facing template
+  let completeTemplate = document.getElementById("questionCompleteTemplate");
+
+  // Loop through questions just like in displayTextQuestions(), 
+  // only this time we will not add any answer buttons or event listeners.
+  // It is only to display to the user their already completed quiz.
+
+  var questionNumber = 1;
+  questionsSnap.forEach((question) => {
+    // create the copy of the template
+    let nextAnswer = completeTemplate.content.cloneNode(true);
+
+    var userIsCorrect = null
+
+    //read this question in the loop
+
+    const qID = question.id;
+    const qAns = question.get("is_AI");
+
+    var uAnsText = null
+    var qAnsText = null
+    // Had to look up how to iterate thrugh an Object map because for some reason userAnswers is returned as an Object and not a dict/map
+
+    Object.entries(userAnswers).forEach(([userAnsID, userAnsBool]) => {
+
+      if (userAnsBool){uAnsText="You thought this was AI"}
+      else if (userAnsBool=false){uAnsText="You thought this was human written"}
+
+      if (qAns){qAnsText="This text was AI generated"}
+      else if (qAns==false){qAnsText="This text was human written"}
+
+    
+
+      // console.log("key", userAnsID, "value", userAnsBool);
+
+      if (userAnsID == qID) {
+        if (userAnsBool == qAns) {
+          userIsCorrect = true
+        }
+        else if (userAnsBool != qAns && userAnsBool != null) {
+          userIsCorrect = false
+        }
+        else if (userAnsBool == null) {
+          userIsCorrect = null;
+          console.log("User did not select an answer for question with ID", qID);
+        }
+      }
+
+      // console.log("pass in the Object forEach");
+    });
+
+
+    var userIsCorrectText = null
+    if (userIsCorrect){ userIsCorrectText = "Correct!"}
+    else { userIsCorrectText = "Incorrect!"}
+
+    const questionSnap = question.data();
+
+    //populate data in the template
+    nextAnswer.querySelector(".question-number").textContent = questionNumber;
+    nextAnswer.querySelector(".question-text").textContent = questionSnap.question;
+
+    nextAnswer.getElementById("user-answer").textContent += uAnsText;
+    nextAnswer.getElementById("question-answer").textContent += qAnsText;
+    nextAnswer.getElementById("user-result").textContent += userIsCorrectText;
+
+
+    document.getElementById("answers-go-here").appendChild(nextAnswer);
+
+    questionNumber++;
+
+  });
+}
+
+displayCompletedTextQuestions();
