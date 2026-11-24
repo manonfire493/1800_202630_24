@@ -6,6 +6,8 @@ import { onAuthReady } from "./authentication.js";
 import { userSession } from "./userSessions.js";
 import { length } from "firebase/firestore/pipelines";
 
+import { incrementUserStatsWith } from "./userStats.js";
+
 async function getUser() {
   // okay i dont think this works
 
@@ -203,6 +205,7 @@ async function displayCompletedTextQuestions(){
 
   // Get session
   const session = await userSession(user, false);
+  console.log("current session id:", await userSession(user, true))
   const userAnswers = session.get("question_answers");
   
 
@@ -235,23 +238,28 @@ async function displayCompletedTextQuestions(){
     Object.entries(userAnswers).forEach(([userAnsID, userAnsBool]) => {
 
       if (userAnsBool){uAnsText="You thought this was AI"}
-      else if (userAnsBool=false){uAnsText="You thought this was human written"}
+      else if (userAnsBool==false){uAnsText="You thought this was human written"}
+      else {uAnsText="You did not select an answer."}
 
       if (qAns){qAnsText="This text was AI generated"}
-      else if (qAns==false){qAnsText="This text was human written"}
+      else if (qAns==false){qAnsText="This text was written by a human"}
+   
 
     
 
       // console.log("key", userAnsID, "value", userAnsBool);
 
       if (userAnsID == qID) {
-        if (userAnsBool == qAns) {
+        if (userAnsBool == qAns && (userAnsBool == true || userAnsBool == false)
+        ) {
           userIsCorrect = true
+          console.log("user was correct, uAns==qAns:", userAnsBool, "==", qAns)
         }
         else if (userAnsBool != qAns && userAnsBool != null) {
           userIsCorrect = false
+          console.log("user was incorrect, uAns!=qAns:", userAnsBool, "!=", qAns)
         }
-        else if (userAnsBool == null) {
+        else {
           userIsCorrect = null;
           console.log("User did not select an answer for question with ID", qID);
         }
@@ -262,8 +270,8 @@ async function displayCompletedTextQuestions(){
 
 
     var userIsCorrectText = null
-    if (userIsCorrect){ userIsCorrectText = "Correct!"}
-    else { userIsCorrectText = "Incorrect!"}
+    if (userIsCorrect==true){ userIsCorrectText = "Correct!"}
+    else{ userIsCorrectText = "Incorrect!"}
 
     const questionSnap = question.data();
 
@@ -274,6 +282,20 @@ async function displayCompletedTextQuestions(){
     nextAnswer.getElementById("user-answer").textContent += uAnsText;
     nextAnswer.getElementById("question-answer").textContent += qAnsText;
     nextAnswer.getElementById("user-result").textContent += userIsCorrectText;
+
+    if (userIsCorrect==true){
+      nextAnswer.querySelector(".question-container").classList.add("answer-correct");
+      console.log(question.get("name"), "is correct.");
+    }
+    else if (userIsCorrect==false){
+      nextAnswer.querySelector(".question-container").classList.add("answer-incorrect");
+      console.log(question.get("name"), "is incorrect.");
+    }
+    else {
+      // if answer is null
+      nextAnswer.querySelector(".question-container").classList.add("answer-null");
+      console.log(question.get("name"), "is unanswered and thus incorrect.");
+    }
 
 
     document.getElementById("answers-go-here").appendChild(nextAnswer);

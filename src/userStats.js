@@ -66,5 +66,63 @@ function displayStats() {
     });
 }
 
+export async function incrementUserStatsWith(
+    update_games_average_score=0, add_games_completed=0, add_games_started=0,
+    add_quizzes_completed=0, add_quizzes_started=0, update_quizzes_average_score=0
+){
+    // Technically you can run this function with no parameters
+    // It will just be a waste of time
+    // IMPORTANT: Make sure to use keyword arguments when calling this function,
+    // DO NOT USE POSITIONAL ARGUMENTS
+    // Apparently JavaScript doesn't support this the same way python does, so use this format with example params:
+    // incrementUserStatsBy({ add_games_average_score: 1, add_quizzes_completed: 1" } = {});
+    // By passing an object param, you can omit what you don't want to increment and only mention what you do want.
+
+    await auth.authStateReady();
+    const user = auth.currentUser;
+    const userid = user.uid;
+
+      try {
+        const userRef = doc(db, "users", userid);
+        await updateDoc(userRef, { 
+            games_completed: increment(add_games_completed), 
+            games_started: increment(add_games_started),
+            quizzes_completed: increment(add_quizzes_completed), 
+            quizzes_started: increment(add_quizzes_started),
+
+        });
+      } catch (error) {
+        console.error("Encountered error while incrementing user stats:", error);
+      }
+
+      try {
+        const userRef = doc(db, "users", userid);
+        const currentQuizAvg = userRef.get("quizzes_average_score")
+        const quizzesCompleted = userRef.get("quizzes_completed").parseInt;
+       
+        const currentGameAvg = userRef.get("games_average_score");
+        const gamesCompleted = userRef.get("games_completed").parseInt;;
+
+        if (update_games_average_score > 0){
+            const newQuizAvg = (update_quizzes_average_score + currentQuizAvg) / quizzesCompleted;
+             await updateDoc(userRef, { 
+            games_completed: newQuizAvg, 
+
+        });
+        }
+        if (update_quizzes_average_score > 0){
+            const newGameAvg = (update_games_average_score + currentGameAvg) / gamesCompleted;
+             await updateDoc(userRef, { 
+            games_completed: newGameAvg,
+
+        });
+        }
+      } catch (error){
+        console.error("Encountered error while updating user stats:", error);
+      }
+
+    
+}
+
 
 
