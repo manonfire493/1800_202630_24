@@ -3,7 +3,7 @@ import { doc, getDoc, getDocs, collection } from "firebase/firestore";
 import { updateDoc, increment } from "firebase/firestore";
 import { onAuthReady } from "./authentication.js";
 
-import { userSession } from "./userSessions.js";
+import { userSession, endSession, createSession } from "./userSessions.js";
 import { length } from "firebase/firestore/pipelines";
 
 import { incrementUserStatsWith } from "./userStats.js";
@@ -40,13 +40,12 @@ function finish_quiz() {
   });
 }
 
-finish_quiz();
 
 async function markUserAnswers() {
   await auth.authStateReady();
   const user = auth.currentUser;
 
-  const session = await userSession(user, false);
+  var session = await userSession(user, false);
   const userAnswers = session.get("question_answers");
 
   const questionsSnap = await getDocs(collection(db, "questions"));
@@ -58,8 +57,8 @@ async function markUserAnswers() {
   questionsSnap.forEach((question) => {
     const qID = question.id;
     const qAns = question.get("is_AI");
-    console.log(question.get("name"), "is ", qAns);
-    console.log(qID);
+    // console.log(question.get("name"), "is ", qAns);
+    // console.log(qID);
 
     // Had to look up how to iterate thrugh an Object map because for some reason userAnswers is returned as an Object and not a dict/map
 
@@ -87,7 +86,7 @@ async function markUserAnswers() {
 
 }
 
-function showScore(score, max){
+async function showScore(score, max){
   // Select the elements on "quiz_complete.html"
   const headerDisplay = document.getElementById("completed-header");
   const titleDisplay = document.getElementById("score-percentage");
@@ -189,7 +188,19 @@ function showScore(score, max){
     console.error("No score margin for likely invalid value: ", scorePercentage)
   }
 
-  
+  // Check if we need to update the user stats
+
+  await auth.authStateReady();
+  const user = auth.currentUser;
+
+  const session = await userSession(user, false);
+  const sessionIsActive = session.get("is_active");
+
+  if (sessionIsActive){
+    incrementUserStatsWith({update_quizzes_average_score:scorePercentage, add_quizzes_completed:1});
+    endSession(scorePercentage);
+  }
+  else { console.log("Session closed or undefined. No stat changes were made")}
 
 }
 
@@ -238,11 +249,11 @@ async function displayCompletedTextQuestions(){
     Object.entries(userAnswers).forEach(([userAnsID, userAnsBool]) => {
 
       if (userAnsBool){uAnsText="You thought this was AI"}
-      else if (userAnsBool==false){uAnsText="You thought this was human written"}
+      else if (userAnsBool==false){uAnsText="You thought this was human made"}
       else {uAnsText="You did not select an answer."}
 
-      if (qAns){qAnsText="This text was AI generated"}
-      else if (qAns==false){qAnsText="This text was written by a human"}
+      if (qAns){qAnsText=" (AI generated) "}
+      else if (qAns==false){qAnsText=" (a human) "}
    
 
     
@@ -277,10 +288,11 @@ async function displayCompletedTextQuestions(){
 
     //populate data in the template
     nextAnswer.querySelector(".question-number").textContent = questionNumber;
+    nextAnswer.getElementById("question-difficulty").textContent += question.get("difficulty")
     nextAnswer.querySelector(".question-text").textContent = questionSnap.question;
 
     nextAnswer.getElementById("user-answer").textContent += uAnsText;
-    nextAnswer.getElementById("question-answer").textContent += qAnsText;
+    nextAnswer.getElementById("question-answer").textContent += question.get("author") + qAnsText;
     nextAnswer.getElementById("user-result").textContent += userIsCorrectText;
 
     if (userIsCorrect==true){

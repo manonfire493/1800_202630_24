@@ -21,7 +21,8 @@ import {
 import { onAuthReady } from "/src/authentication.js";
 
 function sayHello() {
-  console.log("Hello! (main.js loaded)");
+  // console.log("Hello! (main.js loaded)");
+  // no
 }
 document.addEventListener("DOMContentLoaded", sayHello);
 
@@ -56,12 +57,30 @@ function showName() {
     }
   });
 }
+
+async function initializeQuizButton(){
+  console.log("Quiz button initializing...");
+  document.querySelector(".START-QUIZ").addEventListener("click", async () => {
+    
+    // alert("The button listener is working!");
+    event.preventDefault(); // I was losing my mind because the redirect happened too fast, so we must prevent that
+    
+
+    const newSessionID = await createSession(true);
+    console.log("The user has been loaded into the session:", newSessionID);
+
+    if (newSessionID) {
+      location.href = "../quizzes/quiz-text.html";
+    }
+  })
+}
+
+initializeQuizButton();
+
 showName();
 
 seedQuestions();
 
 renderAuthControls();
-
-createSession();
 
 console.log("Main.js finished executing!");

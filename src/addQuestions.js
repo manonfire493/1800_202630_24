@@ -1,4 +1,4 @@
-import { db } from "./firebaseConfig.js";
+import { db, auth } from "./firebaseConfig.js";
 import { doc, onSnapshot, getDoc, updateDoc } from "firebase/firestore";
 import {
   collection,
@@ -7,7 +7,7 @@ import {
   serverTimestamp,
 } from "firebase/firestore";
 
-import { createSession } from "./userSessions.js";
+import { createSession, userSession } from "./userSessions.js";
 
 /* Difficulty levels for questions: Easy, Medium, Hard, Insane 
 FIELDS 
@@ -154,13 +154,13 @@ async function setupAnswerButton(newQuestion, questionID, sessionID) {
           // And also unselected it in the DB by changing answer to null again
           humanWrittenButton.classList.replace("btn-secondary", "btn-success")
           await updateAnswer(sessionID, questionID, null);
-          console.log("Unselected 'Human written'");
+          console.log("Unselected 'Human created'");
         }
         else {
           // If the question was unselected
           humanWrittenButton.classList.replace("btn-success", "btn-secondary")
           await updateAnswer(sessionID, questionID, false);
-           console.log("User selected 'Human written'");
+           console.log("User selected 'Human created'");
         }
 
         if (AIWrittenButton.classList.contains("btn-secondary")){
@@ -233,7 +233,9 @@ export async function displayTextQuestions(sessionID) {
 // also added await to everything because it seemed to mess some stuff up without it
 async function initializeQuiz() {
 
-    const sessionID = await createSession();
+    await auth.authStateReady();
+    const user = auth.currentUser;
+    const sessionID = await userSession(user);
 
     // debug log incase the sessionID doesn't come through, check if it makes it through initializeQuiz()
     //  console.log("sessionID received:", sessionID); 
