@@ -85,7 +85,7 @@ export async function incrementUserStatsWith(
     const user = auth.currentUser;
     const userid = user.uid;
 
-     if (update_games_average_score>0 || update_quizzes_average_score>0){
+     if (update_games_average_score>=0 || update_quizzes_average_score>=0){
       try {
         const userRef = doc(db, "users", userid);
         const userSnap = await getDoc(userRef);
@@ -95,7 +95,7 @@ export async function incrementUserStatsWith(
         const currentGameAvg = userSnap.get("games_average_score");
         const gamesCompleted = userSnap.get("games_completed");
 
-        if (update_quizzes_average_score > 0){
+        if (update_quizzes_average_score >= 0){
             console.log("Adding quiz score:", update_quizzes_average_score);
             console.log("Current quiz average:", currentQuizAvg);
             console.log("Quizzes completed:", quizzesCompleted);
@@ -109,7 +109,7 @@ export async function incrementUserStatsWith(
         });
         console.log("Updated users average quiz score with", update_quizzes_average_score, "% as", newQuizAvg);
         }
-        if (update_games_average_score > 0){
+        if (update_games_average_score >= 0){
 
             // Calculate new average using gamesCompleted+1
             const newGameAvg = (update_games_average_score + (currentGameAvg * gamesCompleted)) / (gamesCompleted + 1);

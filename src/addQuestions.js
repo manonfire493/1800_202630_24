@@ -43,7 +43,6 @@ export function addQuizQuestions() {
     theme: "Shakespeare",
     source:
       "https://www.folger.edu/explore/shakespeares-works/twelfth-night/read/4/1/",
-    user_answer: null,
   });
   addDoc(questions, {
     type: "Quiz-Text",
@@ -57,7 +56,6 @@ export function addQuizQuestions() {
     author: "ChatGPT",
     theme: "Shakespeare",
     source: "https://chatgpt.com/",
-    user_answer: null,
   });
   addDoc(questions, {
     type: "Quiz-Text",
@@ -73,7 +71,6 @@ export function addQuizQuestions() {
     theme: "Shakespeare",
     source:
       "https://www.folger.edu/explore/shakespeares-works/julius-caesar/read/5/5/",
-    user_answer: null,
   });
   addDoc(questions, {
     type: "Quiz-Text",
@@ -87,7 +84,6 @@ export function addQuizQuestions() {
     author: "Google Gemini",
     theme: "Shakespeare",
     source: "https://gemini.google.com",
-    user_answer: null,
   });
   addDoc(questions, {
     type: "Quiz-Text",
@@ -100,7 +96,6 @@ export function addQuizQuestions() {
     is_AI: true,
     author: "Google Gemini",
     theme: "Shakespeare",
-    user_answer: null,
   });
   addDoc(questions, {
     type: "Quiz-Text",
@@ -114,7 +109,6 @@ export function addQuizQuestions() {
     author: "William Shakespeare",
     theme: "Shakespeare",
     source: "https://www.folger.edu/explore/shakespeares-works/romeo-and-juliet/read/1/3/",
-    user_answer: null,
   });
 }
 

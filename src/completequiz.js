@@ -184,6 +184,7 @@ async function showScore(score, max) {
       update_quizzes_average_score: scorePercentage,
       add_quizzes_completed: 1,
     });
+    console.log("Session was active: updated userStatsWith: "+scorePercentage+" and +1 quiz completed.")
     endSession(scorePercentage);
   } else {
     console.log("Session closed or undefined. No stat changes were made");
