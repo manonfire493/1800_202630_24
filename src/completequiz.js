@@ -280,8 +280,8 @@ async function displayCompletedTextQuestions() {
       questionSnap.question;
 
     nextAnswer.getElementById("user-answer").textContent += uAnsText;
-    nextAnswer.getElementById("question-answer").textContent +=
-      question.get("author") + qAnsText;
+    nextAnswer.getElementById("question-answer").innerHTML = `<a href="${question.get("source")}"> Source:
+      ${question.get("author") +  qAnsText}</a>`
     nextAnswer.getElementById("user-result").textContent += userIsCorrectText;
 
     if (userIsCorrect == true) {
