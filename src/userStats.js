@@ -60,7 +60,7 @@ function displayStats() {
         container.querySelector('.user-name').textContent = `name: ${name}`;
         container.querySelector('.create-date').textContent = `created on: ${date_created}`;
         
-        container.querySelector('.quizzes-average-score').textContent = `Quizzes Average Score: ${userDoc.data().quizzes_average_score}`;
+        container.querySelector('.quizzes-average-score').textContent = `Quizzes Average Score: ${userDoc.data().quizzes_average_score.toFixed(2)}%`;
         container.querySelector('.quizzes-started').textContent = `Quizzes Started: ${userDoc.data().quizzes_started}`;
         container.querySelector('.quizzes-completed').textContent = `Quizzes Completed: ${userDoc.data().quizzes_completed}`;
     });
