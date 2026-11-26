@@ -102,7 +102,20 @@ export function addQuizQuestions() {
     theme: "Shakespeare",
     user_answer: null,
   });
-  
+  addDoc(questions, {
+    type: "Quiz-Text",
+    name: "Question 6",
+    difficulty: "Easy",
+    question: `Peace. I have done. God mark thee to his grace,
+    Thou wast the prettiest babe that e’er I nursed.
+    An I might live to see thee married once,
+    I have my wish.`,
+    is_AI: false,
+    author: "William Shakespeare",
+    theme: "Shakespeare",
+    source: "https://www.folger.edu/explore/shakespeares-works/romeo-and-juliet/read/1/3/",
+    user_answer: null,
+  });
 }
 
 export async function seedQuestions() {

@@ -97,7 +97,7 @@ async function showScore(score, max) {
 
   const scorePercentage = (score / max) * 100;
 
-  titleDisplay.textContent = scorePercentage + "%";
+  titleDisplay.textContent = scorePercentage.toFixed(2) + "%";
   userScoreDisplay.textContent = score;
   maxScoreDisplay.textContent = max;
 
