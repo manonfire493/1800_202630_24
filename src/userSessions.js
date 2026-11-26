@@ -90,7 +90,7 @@ export async function createSession(override = false) {
         return existingSessionID;
     }
 
-console.log("No suitable existing session. Creating a new one...");
+console.log("No active AND existing session. Creating a new one...");
   if (user) { 
     var sessions = collection(db, "sessions");
 

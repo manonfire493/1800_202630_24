@@ -125,7 +125,7 @@ async function showScore(score, max) {
 
     headerDisplay.classList.add("score-A");
   } else if (scorePercentage >= 80) {
-    // B+f
+    // B+
     headerDisplay.textContent += "B+";
 
     headerDisplay.classList.add("score-B");
@@ -216,6 +216,8 @@ async function displayCompletedTextQuestions() {
 
   var questionNumber = 1;
   questionsSnap.forEach((question) => {
+
+
     // create the copy of the template
     let nextAnswer = completeTemplate.content.cloneNode(true);
 
@@ -226,53 +228,40 @@ async function displayCompletedTextQuestions() {
     const qID = question.id;
     const qAns = question.get("is_AI");
 
-    var uAnsText = null;
+    var uAnsText = "You did not select an answer";
     var qAnsText = null;
+    // console.log({ userAnswer: userAnswers[qID], qID, qAns });
     // Had to look up how to iterate thrugh an Object map because for some reason userAnswers is returned as an Object and not a dict/map
 
-    Object.entries(userAnswers).forEach(([userAnsID, userAnsBool]) => {
-      if (qAns) {
-        qAnsText = " (AI generated) ";
-      } else if (qAns == false) {
-        qAnsText = " (a human) ";
-      }
+    const userAnsBool = userAnswers[qID];
+    if (qAns) {
+      qAnsText = " (AI generated) ";
+    } else if (qAns == false) {
+      qAnsText = " (a human) ";
+    }
 
-      // console.log("key", userAnsID, "value", userAnsBool);
+    if (userAnsBool == true) {
+      uAnsText = "You thought this was AI";
+    } else if (userAnsBool == false) {
+      uAnsText = "You thought this was human made";
+    }
+    //  else if (userAnsBool==null){
+    //   uAnsText = "You did not select an answer.";
+    // }
 
-      if (userAnsID == qID) {
-        if (userAnsBool) {
-          uAnsText = "You thought this was AI";
-        } else if (userAnsBool == false) {
-          uAnsText = "You thought this was human made";
-        } else {
-          uAnsText = "You did not select an answer.";
-        }
-
-        if (
-          userAnsBool == qAns &&
-          (userAnsBool == true || userAnsBool == false)
-        ) {
-          userIsCorrect = true;
-          console.log("user was correct, uAns==qAns:", userAnsBool, "==", qAns);
-        } else if (userAnsBool != qAns && userAnsBool != null) {
-          userIsCorrect = false;
-          console.log(
-            "user was incorrect, uAns!=qAns:",
-            userAnsBool,
-            "!=",
-            qAns,
-          );
-        } else {
-          userIsCorrect = null;
-          console.log(
-            "User did not select an answer for question with ID",
-            qID,
-          );
-        }
-      }
-
-      // console.log("pass in the Object forEach");
-    });
+    if (
+      userAnsBool == qAns &&
+      (userAnsBool === true || userAnsBool === false)
+    ) {
+      userIsCorrect = true;
+      console.log("user was correct, uAns==qAns:", userAnsBool, "==", qAns);
+    } else if (userAnsBool != qAns && userAnsBool != null) {
+      userIsCorrect = false;
+      console.log("user was incorrect, uAns!=qAns:", userAnsBool, "!=", qAns);
+    } else {
+      userIsCorrect = null;
+      console.log("User did not select an answer for question with ID", qID);
+    }
 
     var userIsCorrectText = null;
     if (userIsCorrect == true) {

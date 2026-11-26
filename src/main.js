@@ -62,9 +62,9 @@ async function initializeQuizButton(){
   console.log("Quiz button initializing...");
   document.querySelector(".START-QUIZ").addEventListener("click", async () => {
     
-    // alert("The button listener is working!");
+    // alert("quiz button is indeed functional!");
     event.preventDefault(); // I was losing my mind because the redirect happened too fast, so we must prevent that
-    
+
 
     const newSessionID = await createSession(true);
     console.log("The user has been loaded into the session:", newSessionID);

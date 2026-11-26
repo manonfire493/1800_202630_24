@@ -144,6 +144,8 @@ async function setupAnswerButton(newQuestion, questionID, sessionID) {
     const humanWrittenButton = newQuestion.querySelector(".question-answer-false");
     const AIWrittenButton = newQuestion.querySelector(".question-answer-true");
 
+    await updateAnswer(sessionID, questionID, null);
+
     console.log("Added question with ID:", questionID);
 
     humanWrittenButton.addEventListener("click", async () => {
